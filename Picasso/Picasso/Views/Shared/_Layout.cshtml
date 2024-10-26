@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中大展覽管理系統｜@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Picasso.styles.css" asp-append-version="true" />
+
+    <!--自訂CSS樣式表 by允澔-->
+    <link rel="stylesheet" href="~/css/_Layout.css">
+    <link rel="stylesheet" href="~/css/navbor.css">
+    <link rel="stylesheet" href="~/css/panigation.css">
+
+    <!--Bootstrap CSS樣式表-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--jQuery資源 by欣華-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <!--jQuery資源 by允澔-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+</head>
+<body>
+    <header class="shadow">
+        <!-- 標頭內容 -->
+
+        <div class="clearfix">
+            <div class="float-left"><a href="/Exhibition/Index"><img src="~/image/icon/NCUArtCenterLogo.png" width="500"></a></div>
+            <div class="float-right flex-column">
+                <div class="OutsideLink">
+                    <div class="p-2 float-left"><a href="#homepage"><img src="~/image/icon/NCUWebLogo.png">中央大學&nbsp</a></div>
+                    <div class="p-2 float-left"><a href="#homepage"><img src="~/image/icon/FBLogo.png">Facebook&nbsp</a></div>
+                    <div class="p-2 float-left"><a href="#homepage"><img src="~/image/icon/YTLogo.png">Youtube&nbsp</a></div>
+                    <div class="p-2 float-left"><a href="#homepage"><img src="~/image/icon/MailLogo.png">電子郵件&nbsp</a></div>
+                </div>
+                <div>
+                    @if (@Context.Session.GetString("IsLogin") == "true")
+                    {
+                        <button id="logoutBtn" type="button" class="LogoutBtn">登出</button>
+                        <div class="MemberLoginFont">您好，使用者！</div>
+                    }
+                    else
+                    {
+                        <button id="registerBtn" type="button" class="btn btn-primary RegisterBtn" data-toggle="modal" data-target="#registerModal">註冊</button>
+                        <button id="loginBtn" type="button" class="btn btn-primary LoginBtn" data-toggle="modal" data-target="#loginModal">登入</button>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+        <nav class="navbarBox">
+            <div class="dropdownBox">
+                <button class="dropbtn" onclick="location.href='@Url.Action("SpaceDetail", "Exhibition", new { spaceName = "" })'">展場介紹</button>
+                <div class="dropdown-content">
+                    <a onclick="location.href='@Url.Action("SpaceDetail", "Exhibition", new { spaceName = "人文藝術中心" })'">藝文中心</a>
+                    <a onclick="location.href='@Url.Action("SpaceDetail", "Exhibition", new { spaceName = "107電影院" })'">107電影院</a>
+                    <a onclick="location.href='@Url.Action("SpaceDetail", "Exhibition", new { spaceName = "黑盒子劇場" })'">黑盒子劇場</a>
+                </div>
+            </div>
+
+            <div class="dropdownBox">
+                <button class="dropbtn">活動總覽</button>
+                <div class="dropdown-content">
+                    <a id="currentExhibitionLink">當前展期</a>
+                    <a id="futureExhibitionLink">未來展期</a>
+                    <a id="pastExhibitionLink">過去展期</a>
+                </div>
+            </div>
+
+            @if (Context.Session.GetString("IsLogin") == "true")
+            {
+                <div class="dropdownBox">
+                    <button class="dropbtn">策劃展覽</button>
+                    <div class="dropdown-content">
+                        <a href="/Curation/Apply">展覽場地租借</a>
+                    </div>
+                </div>
+
+                <div class="dropdownBox">
+                    <button class="dropbtn">會員中心</button>
+                    <div class="dropdown-content">
+                        <a onclick="location.href='@Url.Action("ManagementCenter", "Member", new { memberId = Context.Session.GetString("MemberId") })'">會員中心</a>
+                    </div>
+                </div>
+            }
+            
+        </nav>
+    </header>
+    
+    <main>
+        <!-- 登入-->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="loginModalTitle"><b>會員登入</b></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="loginForm" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="username">帳號：</label>
+                                <input type="text" class="form-control" id="loginAccount" name="account" placeholder="輸入你的帳號">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">密碼：</label>
+                                <input type="password" class="form-control" id="loginPassword" name="password" placeholder="輸入你的密碼">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary">登入</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 註冊-->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerModalTitle"><b>會員註冊</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="registerForm" method="post">
+                            <div class="form-group">
+                                <label for="registerUsername">帳號：</label>
+                                <input type="text" class="form-control" id="registerAccount" name="account" maxlength="20" placeholder="輸入你的帳號" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPassword">密碼：</label>
+                                <input type="password" class="form-control" id="registerPassword" name="password" maxlength="20" placeholder="輸入你的密碼" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">確認密碼：</label>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" maxlength="20" placeholder="再次輸入密碼" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fullName">姓名：</label>
+                                <input type="text" class="form-control" id="username" name="username" maxlength="12" placeholder="輸入你的姓名" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="memberPhone">會員電話：</label>
+                                <input type="tel" class="form-control" id="memberPhone" name="memberPhone" pattern="[0-9]{10}" maxlength="10" placeholder="輸入你的電話號碼" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">電子郵件：</label>
+                                <input type="email" class="form-control" id="memberEmail" name="memberEmail" pattern=".+@("@")gmail\.com" maxlength="30" oninvalid="alert('請輸入 @("@")gmail\.com 的 email');" placeholder="輸入你的電子郵件" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary">註冊</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+        <button id="scrollToTopBtn" onclick="scrollToTop()">Scroll to Top</button>
+    </main>
+    
+    <footer>
+        <div class="footertext">
+            <div>
+                地址 : 320桃園市中壢區中大路300號 人文社會科學大樓LS-325 國立中央大學人文藝術中心<br>
+                版權所有 : 中央大學資訊管理研究所 軟體工程-第四組 © 2023 ALL RIGHT RESERVED.
+            </div>
+            <!-- 頁腳內容 -->
+        </div>
+    </footer>
+    <script src="~/js/_Layout.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

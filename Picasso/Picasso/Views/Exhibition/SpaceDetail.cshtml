@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Picasso.Models.Spaces>
+
+@{
+    ViewData["Title"] = "展覽介紹";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="topimg">
+    <img src="~/image/icon/NCUArtCenterBanner.png" width="100%">
+</div>
+<div class="container">
+    <div class="ExhibitionBox">
+        <div class="ExhibitionPeriod">展場介紹</div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="ExhibitionPlaceIntroduction">
+            <div class="PlacePicBox"><img src="@Url.Content("../image/upload/" + item.Image)"></div>
+            <div class="PlaceContentBox">
+                <div class="PlaceName">
+                    <div class="PlaceNameChinese">@item.SpaceName</div>
+                    <div class="PlaceNameEnglish"></div>
+                </div>
+                <div class="PlaceDescription">
+                    <div class="PlaceDescriptionTitle">展場介紹：</div>
+                    <div class="PlaceDescriptionInfo">@item.SpaceDescription</div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

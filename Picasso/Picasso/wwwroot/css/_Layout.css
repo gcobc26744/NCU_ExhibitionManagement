@@ -1,0 +1,1023 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Noto Sans TC", sans-serif !important;
+    background-image: url('../image/icon/niceSnow.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 2; /*更動*/
+}
+
+/*首頁新增輪播*/
+.carousel {
+    z-index: 1;
+    padding-top: 140px;
+}
+
+
+.OutsideLink {
+    height:50px;
+   
+}
+
+.OutsideLink a{
+    color: #000;
+}
+
+.OutsideLink a:hover{
+    color: #000000;
+}
+
+.OutsideLink img{
+    height: 30px;
+    padding-right: 10px;
+}
+
+.LoginBtn, .LogoutBtn, .RegisterBtn {
+    padding: 5px 35px;
+    margin: 0 5px;
+    border-radius: 10px;
+    float: right;
+    border: none;
+    background-color: #D2EEEE;
+    color: #3D7188;
+    font-weight: bolder;
+}
+
+.LoginBtn:hover ,.RegisterBtn:hover{
+    background-color:#098A9B;
+    color: #ffffff;
+}
+
+.topimg{
+    padding-top:140px;
+}
+
+.MemberLoginFont {
+    color: #3D7188;
+    font-weight: bolder;
+    float:right;
+    display:block;
+    height:37px;
+    line-height:37px;
+}
+
+
+
+
+.container {
+    /*border: solid rgb(214, 50, 187);*/
+    padding: 0 0 !important;
+    /*height: 10000px;*/
+}
+
+.ExhibitionBox{
+    text-align: center;
+    color: #18343F;
+    /*border: solid saddlebrown;*/
+    padding: 0 0 15px 0;
+}
+
+
+.ExhibitionPeriod{
+   font-size: 35px;
+   padding: 30px 0 10px 0;
+   font-weight: bold;
+   color: #18343F;
+}
+
+
+.ExhibitionVenue{
+    display: flex;
+    align-items: center; /* 在主轴方向上居中 */
+    justify-content: center; /* 在交叉轴方向上居中 */
+    height: 60px;
+}
+
+.ExhibitionVenue a{
+    padding: 8px 100px;
+    margin: 0 8px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.ExhibitionVenue a:hover{
+    text-decoration: none;
+    color: #06133c;
+    font-weight: 700;
+}
+
+
+.ExhibitionVenue1{
+    color: white;
+    background: #098A9B;
+}
+
+.ExhibitionVenue2 ,.ExhibitionVenue3 {
+    color: #3D7188;
+    background: #D2EEEE;
+}
+
+
+.ExhibitionContent{
+    margin: auto;
+    width: 1000px;
+    height: 400px;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1), 0 0px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    background-color: #fff;
+}
+
+.ExhibitionContent:hover{
+    box-shadow: 0 0px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+
+.ExhibitionPicBox{
+    /*border: #098A9B solid;*/
+    width: 300px;
+}
+
+.ExhibitionPic {
+    margin: 20px 20px 0 30px;
+}
+
+
+.ExhibitionPic img{
+    width: 100%;
+    /*border: solid;*/
+}
+
+.ExhibitionContnetBox{
+    /*border: #098A9B solid;*/
+    width: 700px;
+    height: 100%;
+}
+
+.ExhibitionContnetTitle{
+    /*border: solid slateblue;*/
+    padding: 10px 0 10px 15px;
+    margin: 20px 0 0 0;
+    font-size: 25px;
+    font-weight: 900;
+    overflow:hidden;
+}
+
+.ExhibitionContnetDescription{
+    padding: 10px 30px 0px 15px;
+    /*border: solid slateblue;*/
+}
+
+.ExhibitionContnetDescriptionTitle{
+    font-size: 18px;
+    font-weight: 900;
+    padding-bottom: 5px;
+}
+
+.ExhibitionContnetDescriptionContent{
+    font-size: 15px;
+    font-weight: 500;
+    color: rgb(145, 145, 145);
+    height: 135px;
+    /*border: solid;*/
+    overflow:hidden;
+}
+
+.ExhibitionContnetInfo{
+    display: flex;
+    /*border: #9b2609 solid;*/
+    margin: 30px 0 0 15px;
+    color: #36505F;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.ExhibitionContnetInfoLeft{
+    height: 100%;
+    /*border: solid;*/
+    width: 300px;
+}
+
+.ExhibitionContnetInfoLeft div{
+    margin-bottom: 3px;
+}
+
+.ExhibitionContnetInfoRight{
+    height: 100%;
+    /*border: solid;*/
+    width: 300px;
+}
+
+.ExhibitionContnetInfoRight div{
+    margin-bottom: 3px;
+}
+
+
+
+
+
+
+/**/
+#scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    background-color: rgb(22, 140, 175);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #1c5d5d;
+}
+
+
+.footertext{
+    width: 100%;
+    height: 100px;
+    /*border: solid saddlebrown;*/
+    text-align: center;
+    background-color: #8585852f;
+    color: #383838;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+
+
+
+
+
+/*-----------------------------ExhibitionInformation-----------------------------*/
+
+.containerBox{
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+
+
+/*麵包屑書籤*/
+.breadcrumbBox{
+    border-bottom: solid rgb(217, 217, 217);
+    font-weight: bolder;
+    color: #898989;
+}
+
+.breadcrumbText{
+    width: 1070px;
+    padding: 15px 0;
+    margin: auto;
+}
+
+.breadcrumbBox a{
+    color: #898989;
+}
+
+.breadcrumbBox span{
+    color: #18343F;
+}
+
+
+/*內容*/
+.ExhibitionInfoTitle{
+    width: 900px;
+    margin: auto;
+    padding: 20px 0 30px 0px;
+    font-size: 30px;
+    font-weight: bolder;
+    border-bottom: rgb(230, 230, 230) solid;
+}
+
+.ExhibitionInfoPicture{
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /*border: #9b9109 solid;*/
+    width: 700px;
+}
+
+.ExhibitionInfoPicture img{
+    width: 100%;
+}
+
+.ExhibitionInfoAppendix{
+    width: 900px;
+    border-bottom: #dddddd solid;
+    margin: auto;
+    padding: 10px 0 30px 0;
+    font-size: 20px;
+    color: #979797;
+    font-weight: 600;
+}
+
+.ExhibitionInfoAppendix b{
+    color: #000000;
+    font-weight: 700;
+}
+
+.ExhibitionInfoDescription{
+    width: 900px;
+    margin: auto;
+    padding: 30px 0 30px 0;
+    /*border: #dddddd solid;*/
+   /* border-bottom: solid rgb(207, 207, 207);*/
+    margin-bottom: 35px;
+}
+.ExhibitionInfoDescriptionTitle{
+    font-size: 20px;
+    font-weight: bolder;
+    /*border: solid;*/
+    padding-bottom: 5px;
+}
+.ExhibitionInfoDescriptionText{
+    white-space: pre-line;
+    margin: auto;
+    color: #5d5d5d;
+}
+.WantToSignUpBox{
+    width: 225px;
+    margin: auto;
+    padding: 0px 0 45px 0;
+    /*border: solid skyblue;*/
+}
+.WantToSignUp {
+    width: 220px;
+    padding: 15px 0px;
+    border-radius: 15px;
+    background: #3F838D;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #ffffff;
+    border: none;
+}
+
+.WantToCancelSignUpBox {
+    width: 225px;
+    margin: auto;
+    padding: 0px 0 45px 0;
+    /*border: solid skyblue;*/
+}
+
+.WantToCancelSignUp {
+    width: 220px;
+    padding: 15px 0px;
+    border-radius: 15px;
+    background: #CB444A;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #ffffff;
+    border: none;
+}
+
+
+
+/* -------------------------------------活動報名已登入--------------------------------------- */
+/* 更動 */
+.ActivitySignUpContainerBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* 去掉 padding */
+    width: 100%; /* 讓它填滿父容器的寬度 */
+    padding-bottom: 25px;
+}
+/* .ActivitySignUpContainerBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+/* 更動 */
+.ActivitySignUpContainerBox form {
+    margin: 0;
+}
+
+.SignUpTitle{
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bolder;
+    color: #098A9B;
+    padding: 35px;
+}
+
+/* 更動 */
+.ActivitySignUpInfoBox {
+    display: flex;
+    justify-content: center;
+    width: 100%; /* 讓它填滿父容器的寬度 */
+    margin: 0; /* 去掉 margin */
+    box-sizing: border-box; /* 避免寬度超出 */
+}
+/* .ActivitySignUpInfoBox{
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    border: #DEDEDE 1px solid;
+} */
+
+/* 更動 */
+.ActivitySignUpInfoBox .ActivityInfo {
+    width: 100%; /* 讓它填滿父容器的寬度 */
+    padding: 10PX 10em;
+    box-sizing: border-box; /* 避免寬度超出 */
+}
+
+/* .ActivitySignUpInfoBox .ActivityInfo{
+    width: 50%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+} */
+.ActivityInfoInfo{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20xp;
+    font-weight: 700;
+    color: #2C5E7A;
+}
+
+.ActivityInfoInfo input {
+    /*font-weight: bolder;*/
+    border: none;
+    text-overflow: ellipsis;
+}
+
+
+.ActivityInfoInfo .ActivityContent {
+    font-weight: 200;
+    color: #6B6B6B;
+}
+
+.ActivityInfoInfo .ActivityContent{
+    font-weight: 200;
+    color: #6B6B6B;
+}
+.ActivityInfoInfo .ActivityTitleContent{
+    font-weight: 500;
+    color: #000;
+}
+.ActivityInfoInfo .ActivityNumberContent{
+    display: flex;
+    font-weight: 500;
+    color: #000;
+}
+.ActivityInfoInfo .ActivityNumberContent .SeatNumber{
+    color: #000;
+}
+.ActivityInfoInfo .ActivityNumberContent .SeatStatus{
+    color: #098A9B;
+}
+
+
+
+/* -----------------------------DropDownList----------------------------- */
+
+.InfoTimeTitle{
+    line-height: 30px;
+}
+.ActivityContent select {
+    background-color: white;  /* 背景顏色白色 */
+    color: black;  /* 字體顏色黑色 */
+    padding: 8px;  /* 設定內間距 */
+    border: 1px solid #ccc;  /* 加入邊框 */
+    border-radius: 4px;  /* 圓角邊框 */
+    font-size: 16px;  /* 字體大小 */
+}
+
+.ActivityContent option {
+    background-color: white;  /* 背景顏色白色 */
+    color: black;  /* 字體顏色黑色 */
+}
+
+.DropDefualtWord{
+    color: #5d5d5d;
+}
+
+#SignupTime{
+    padding: 2px 20px;
+    margin-left: 5px;
+}
+
+/* ChebkBox */
+.ReadCheckBox{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.InputGroup{
+    display: flex;
+}
+
+.container .ActivitySignUpContainerBox .ReadCheckBox .input-group-text{
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+.container .ActivitySignUpContainerBox .ReadCheckBox .input-group-text input{
+    width: 30px;
+    height: 30px;
+}
+.container .ActivitySignUpContainerBox .ReadCheckBox .input-group-prepend{
+    margin-right: 10px;
+}
+.ReadCheckBoxContent{
+    line-height: 30px;
+}
+
+/* Button */
+.GoToSignUpBox{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 1.8%;
+}
+
+
+
+/*-----------------------------HoldingExhibition-----------------------------*/
+
+
+.HoldingExhibitionContnet{
+    width: 900px;
+    /*border: rgb(20, 168, 161) solid;*/
+    margin: auto;
+    padding-bottom: 30px;
+}
+
+.HoldingExhibitionTitle {
+    font-size: 35px;
+    font-weight: bolder;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: solid rgb(228, 228, 228);
+    text-align: center; 
+    color: #098A9B; 
+}
+
+
+.HoldingExhibitionEveryBox,.HoldingExhibitionName,.HoldingExhibitionPhone,.HoldingExhibitionEmail{
+    /*border: solid;*/
+    padding: 10px 0;
+    font-weight: bolder;
+    color: #18343F;
+}
+
+
+.HoldingExhibitionName input,.HoldingExhibitionPhone input,.HoldingExhibitionEmail input{
+    border: solid 0.5px rgb(193, 193, 193);
+    background: #d5d5d5;
+}
+
+
+.HoldingExhibitionEveryBox span{
+    color: red;
+}
+
+
+.HoldingExhibitionCheckBox{
+    padding: 10px 0 10px 70px;
+    font-weight: bolder;
+    display: flex;
+    width: 400px;
+    margin: auto;
+    /*border: saddlebrown solid;*/
+}
+
+.AgreementChecktext{
+    /*border: solid salmon;*/
+    padding: 10px 0 0 20px;
+}
+
+
+
+.HoldingExhibitionEveryBox input,.HoldingExhibitionName input,.HoldingExhibitionPhone input,.HoldingExhibitionEmail input,.ExhibitionInfo,.RentPlaceSelect ,.ExhibitionTypeSelect{
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+}
+
+
+.HoldingExhibitionCheckBox input{
+    width: 30px;
+}
+
+.SubmitHoldingExhibitionForm{
+    width: 170px;
+    height: 50px;
+    border-radius: 10px;
+    background: #3F838D;
+    font-weight: bolder;
+    color: #ffffff;
+    border: none;
+}
+
+.SubmitHoldingExhibitionForm:hover{
+    background: #295e67;
+
+}
+
+.SubmitHoldingExhibitionFormBox{
+    width: 160px;
+    margin: auto;
+}
+
+
+
+.HoldingExhibitionEveryBox input[readonly] {
+    background-color: #ddd; /* 灰色背景 */
+}
+
+
+
+/*--------------------------------MemberCenter-----------------------------------*/
+
+.ModifyMemberInformationBox {
+    /*border: solid rgb(234, 234, 234);*/
+    width: 1000px;
+    /*height: 300px;*/
+    margin-bottom: 0px;
+    padding: 10px;
+}
+
+.MemberCentreTitle {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bolder;
+    color: #098A9B;
+    padding: 20px;
+}
+
+.ModifyMemberInformationTitle {
+    font-size: 25px;
+    font-weight: bolder;
+    margin: 0 0 20px 0;
+    color: #295060;
+}
+
+.ModifyMemberInformationContent {
+    /*border: solid;*/
+    padding: 0 0 0 20px;
+}
+
+    .ModifyMemberInformationContent label {
+        text-align: right;
+        margin: 5px 0;
+        width: 80px; /* 設定 label 寬度 */
+        font-weight: bolder;
+    }
+
+    .ModifyMemberInformationContent input[type="text"],
+    .ModifyMemberInformationContent input[type="tel"],
+    .ModifyMemberInformationContent input[type="email"],
+    .ModifyMemberInformationContent select,
+    .ModifyMemberInformationContent input[type="password"] {
+        width: calc(100% - 90px); /* 設定 input 寬度 */
+        margin: 5px 0;
+        height: 35px;
+        padding-left: 10px;
+    }
+
+
+.Non-input {
+    background-color: #f0f0f0; /* 修改底色為灰色，你可以根據需要調整顏色 */
+    color: #333; /* 修改文字顏色，使其更容易閱讀 */
+    border: 1px solid #ccc; /* 添加一些邊框，提高可視性 */
+}
+
+/*.ModifyButtonBox {
+    display: flex;
+    justify-content: flex-end;*/ /* 將兩個按鈕推到右側 */
+    /*margin-top: 10px;*/ /* 添加一些頂部間距 */
+/*}*/
+
+.ModifyMemberInformationContent button {
+    padding: 10px 0;
+    width: 150px;
+    margin: 10px 5px 0 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #D2EEEE;
+    color: #2C5E7A;
+    font-weight: 900;
+    transition: background-color 0.3s ease;
+    float:right;
+}
+
+.ModifyMemberInformationContent button:hover {
+    background-color: #447e9f; /* 在 hover 時更改背景顏色 */
+    color: #D2EEEE; /* 在 hover 時更改文字顏色 */
+}
+
+
+/* ----- ChangePasswordPopup -----*/
+.ChangePasswordPopupBox {
+    display: none;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 50px;
+    background-color: #ebebeb;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 500px;
+}
+
+.ChangePasswordTitle {
+    margin: 0px 0 10px 0;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+
+.ChangePasswordBox {
+    /*border: #5e1111 solid;*/
+    background-color: #fff;
+    padding: 10px 0;
+}
+
+.ChangePassword1Line {
+    padding: 10px 0;
+}
+
+
+    .ChangePassword1Line label {
+        text-align: right;
+        display: inline-block;
+        width: 110px;
+        color: #2C5E7A;
+        font-weight: bolder;
+        /*border: solid;*/
+    }
+
+    .ChangePassword1Line input {
+        width: 250px;
+    }
+
+
+
+.PWChangeConfirm {
+    background-color: #d53434;
+    color: #ffffff;
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+
+/* Style for the overlay background */
+.ChangePasswordOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+
+
+
+/*--------------看展紀錄----------------*/
+
+.ExhibitionRecordBox {
+    /*border: solid rgb(234, 234, 234);*/
+    width: 1000px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.ExhibitionRecordTitle {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #295060;
+}
+
+
+.scrollable-table table {
+    width: 100%;
+    /*border-collapse: collapse;*/
+    margin-top: 20px;
+}
+
+.scrollable-table th, .scrollable-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    max-width: 270px; /* 設定表格的最大寬度 */
+}
+
+.scrollable-table th {
+    background-color: #f2f2f2;
+}
+
+.CancelSignUP {
+    padding: 5px 0px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+}
+
+    .CancelSignUP:hover {
+        background-color: #2980b9;
+    }
+
+.FinishRecord {
+    padding: 5px 0px;
+    background-color: #a3afb7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+}
+
+
+
+
+.scrollable-table {
+    max-height: 300px; /* 設定最大高度 */
+    overflow-y: auto; /* 啟用垂直滾動條 */
+}
+
+    .scrollable-table thead th {
+        position: sticky;
+        top: 0;
+        background-color: #f5f5f5; /* 背景色可以根據需要自行調整 */
+    }
+
+
+/*--------------辦展紀錄----------------*/
+
+.ApprovalStatus_Pending {
+    color: #000000;
+    font-weight: bolder;
+}
+
+.ApprovalStatus_Passing {
+    color: #098A9B;
+    font-weight: bolder;
+}
+
+.ApprovalStatus_fail {
+    color: #bf2a2a;
+    font-weight: bolder;
+}
+
+.CancelHolding {
+    padding: 5px 0px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+}
+
+
+.HoldingRecordBox {
+    /*border: solid rgb(139, 19, 131);*/
+    width: 1000px;
+    margin-bottom: 35px;
+    padding: 10px;
+}
+
+
+.HoldingRecordTitle {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #295060;
+}
+
+
+/*--------------------------展場介紹--------------------------*/
+.ExhibitionBox {
+    text-align: center;
+    color: #18343F;
+    /*border: solid saddlebrown;*/
+    padding: 0 0 15px 0;
+}
+
+.ExhibitionPeriod {
+    font-size: 35px;
+    padding: 30px 0 10px 0;
+    font-weight: bold;
+    color: #18343F;
+}
+
+.ExhibitionPlaceIntroduction {
+    margin: auto;
+    width: 1150px;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1), 0 0px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    display: flex;
+    background-color: #fff;
+    /*border: solid saddlebrown;*/
+    padding: 40px 60px;
+}
+
+.PlacePicBox {
+    width: 450px;
+    /*border: solid sandybrown;*/
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+    .PlacePicBox img {
+        width: 100%;
+        transition: all 0.5s ease 0.1s;
+    }
+
+        .PlacePicBox img:hover {
+            transform: scale(1.1);
+        }
+
+.PlaceContentBox {
+    width: 550px;
+    /*border: seagreen solid;*/
+    margin-left: 20px;
+}
+
+.PlaceNameChinese {
+    font-size: 30px;
+    font-weight: bolder;
+    color: #2c5565;
+}
+
+.PlaceNameEnglish {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.PlaceDescriptionTitle {
+    font-size: 18px;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+
+.PlaceDescriptionInfo {
+    font-size: 15px;
+    font-weight: 600;
+    color: #8d8d8d;
+}
+
+
+/*--------------------------登入註冊--------------------------*/
+.LoginBtn, .RegisterBtn {
+    padding: 5px 35px !important;
+    margin: 0 5px !important;
+    border-radius: 10px !important;
+    float: right !important;
+    border: none !important;
+    background-color: #D2EEEE !important;
+    color: #3D7188 !important;
+    font-weight: bolder !important;
+}
+
+.LoginBtn:hover, .RegisterBtn:hover {
+    background-color: #098A9B !important;
+    color: #ffffff !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

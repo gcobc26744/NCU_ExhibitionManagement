@@ -1,0 +1,85 @@
+﻿@using System.Net
+@model IEnumerable<Picasso.Models.DTOs.Exhibition.ExhibitionDto>
+
+@{
+    ViewData["Title"] = "展覽總攬";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="topimg">
+    <img src="~/image/icon/NCUArtCenterBanner.png" width="100%">
+</div>
+<div class="container">
+    <div class="ExhibitionBox">
+        @{
+            string period = TempData["Period"] as string;
+
+            if (period == "past")
+            {
+                <div class="ExhibitionPeriod">過去展覽</div>
+            }
+            else if (period == "future")
+            {
+                <div class="ExhibitionPeriod">未來展覽 (可預約)</div>
+            }
+            else
+            {
+                
+                <div class="ExhibitionPeriod">當前展覽 (可預約)</div>
+            }
+        }
+        <div class="ExhibitionVenue">
+            <a id="artAreaLink">藝文展區</a>
+            <a id="107MovieLink">107電影院</a>
+            <a id="blackBoxLink">黑盒子劇場</a>
+        </div>
+    </div>
+
+    <!--1 Exhibition-->
+    @foreach (var item in (List<Picasso.Models.DTOs.Exhibition.ExhibitionDto>)Model)
+    {
+        <div class="ExhibitionContent" onclick="location.href='@Url.Action("Detail", "Exhibition", new { exhibitionId = item.ExhibitionId })'">
+            <div class="ExhibitionPicBox">
+                <div id="exhibitionImage" class="ExhibitionPic"><img src="@Url.Content("~/image/upload/" + item.Image)"></div>
+            </div>
+            <div class="ExhibitionContnetBox">
+                <div id="exhibitionName" class="ExhibitionContnetTitle">@item.ExhibitionName</div>
+                <div class="ExhibitionContnetDescription">
+                    <div class="ExhibitionContnetDescriptionTitle">
+                        簡易描述：
+                    </div>
+                    <div id="exhibitionDescription" class="ExhibitionContnetDescriptionContent">@item.ExhibitionDescription</div>
+                </div>
+                <div class="ExhibitionContnetInfo">
+                    <div class="ExhibitionContnetInfoLeft">
+                        <div class="ExhibitionContnetInfoAuthor">策展｜<span id="memberName">@item.MemberName</span></div>
+                        <div class="ExhibitionContnetInfoPeriod">展期｜<span id="exhibitionDate">@item.ExhibitionDate</span></div>
+                        <div class="ExhibitionContnetInfoPlace">地點｜<span id="spaceName">@item.SpaceName</span></div>
+                    </div>
+                    <div class="ExhibitionContnetInfoRight">
+                        <div class="ExhibitionContnetInfoAuthor">主辦單位｜<span id="organizer">@item.Organizer</span></div>
+                        <div class="ExhibitionContnetInfoPeriod">協辦單位｜<span id="coOrganizer">@item.CoOrganizer</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input class="hidExhibitionId" type="hidden" value='@item.ExhibitionId' />
+    }
+
+    <nav aria-label="Page navigation example">
+        <ul id="pagination" class="pagination justify-content-center">
+            <li class="page-item prev">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <!-- Page buttons will be dynamically inserted here -->
+            <li class="page-item next">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<script src="~/js/Exhibition/Overview.js"></script>

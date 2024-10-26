@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Picasso.Models.DTOs.Administrator.ReviewCurationDto>
+
+@{
+    ViewData["Title"] = "策展管理";
+    Layout = "~/Views/Shared/_AdministratorLayout.cshtml";
+}
+
+<div class="container">
+    <div class="d-flex inline-flex align-items-center mt-5 mb-3">
+        <h1 class="font-weight-normal text-info">策展管理</h1>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>申請時間</th>
+                <th>申請人</th>
+                <th>租借場地</th>
+                <th>展覽類型</th>
+                <th>進度狀態</th>
+                <th>資訊/審核</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td class="align-middle text-break">@item.ApplyDate</td>
+                    <td class="align-middle">@item.MemberName</td>
+                    <td class="align-middle">@item.SpaceName</td>
+                    <td class="align-middle">@item.ExhibitionType</td>
+                    <td class="align-middle">@item.ExhibitionStatus</td>
+                    <td class="align-middle py-1">
+                        <a type="button" class="btn btn-primary" style="background-color:rgba(9, 138, 155); color:white; border-color: rgba(9, 138, 155);" onclick="location.href='@Url.Action("ReviewCurationDetail", "Administrator", new { exhibitionId = item.ExhibitionId })'">查看</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

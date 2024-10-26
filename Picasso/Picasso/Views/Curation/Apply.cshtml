@@ -1,0 +1,94 @@
+﻿@model Picasso.Models.DTOs.Curation.ApplyDto
+
+@{
+    ViewData["Title"] = "展覽場地租借";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="topimg">
+    <img src="~/image/icon/NCUArtCenterBanner.png" width="100%">
+</div>
+<!--自製麵包屑書籤-->
+<div class="breadcrumbBox">
+    <div class="breadcrumbText"><a href="/Exhibition/Index">首頁</a>&nbsp&nbsp>&nbsp&nbsp<a href="">策劃展覽</a>&nbsp&nbsp>&nbsp&nbsp<span>展覽場地租借</span></div>
+</div>
+<!--自製麵包屑書籤 結束-->
+<div class="container">
+    <div class="containerBox shadow">
+        <div class="HoldingExhibitionContnet">
+            <form asp-action="Apply" enctype="multipart/form-data">
+                <div class="HoldingExhibitionTitle">
+                    展覽場地租借
+                </div>
+                <div class="HoldingExhibitionName">
+                    <div>策展人</div>
+                    <input type="text" id="MemberName" value="@ViewBag.Member.MemberName" name="MemberName" readonly>
+                </div>
+                <div class="HoldingExhibitionPhone">
+                    <div>聯絡電話</div>
+                    <input type="text" id="MemberPhone" value="@ViewBag.Member.MemberPhone" name="MemberPhone" readonly>
+                </div>
+                <div class="HoldingExhibitionEmail">
+                    <div>電子信箱</div>
+                    <input type="text" id="MemberEmail" value="@ViewBag.Member.MemberEmail" name="MemberEmail" readonly>
+                </div>
+                <div class="HoldingExhibitionEveryBox">
+                    <div>展覽名稱 <span>*</span></div>
+                    <input type="text" id="ExhibitionName" maxlength="30" name="ExhibitionName" required>
+                </div>
+                <div class="HoldingExhibitionEveryBox">
+                    <div>租借場地 <span>*</span></div>
+                    @Html.DropDownListFor(model => model.SpaceId, (List<SelectListItem>)ViewBag.Space, "請選擇", new { @class = "RentPlaceSelect", @required = true })
+                </div>
+                <div class="HoldingExhibitionEveryBox">
+                    <div>展覽類型 <span>*</span></div>
+                    @Html.DropDownListFor(model => model.ExhibitionType, (List<SelectListItem>)ViewBag.ExhibitionType, "請選擇", new { @class = "RentPlaceSelect", @required = true })
+                </div>
+                <div class="HoldingExhibitionEveryBox">
+                    <div>展覽資訊 <span>*</span></div>
+                    <textarea id="ExhibitionDescription" class="ExhibitionInfo" rows="5" maxlength="500" name="ExhibitionDescription" required></textarea>
+                </div>
+                <div class="HoldingExhibitionEveryBox">
+                    <div>活動海報 <span>*</span></div>
+                    <input asp-for="ImageFile" id="ImageFile" accept="image/*" class="EventPoster" required>
+                </div>
+                <div class="HoldingExhibitionEveryBox">
+                    <div>主辦單位 <span>*</span></div>
+                    <input id="Organizer" type="text" name="Organizer" maxlength="20" required>
+                </div>
+                <div class="HoldingExhibitionEveryBox">
+                    <div>協辦單位 <span>*</span></div>
+                    <input id="CoOrganizer" type="text" name="CoOrganizer" maxlength="100" required>
+                </div>
+                <div class="HoldingExhibitionEveryBox">
+                    <div>開始日期 <span>*</span></div>
+                    <input id="StartDate" type="date" name="StartDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
+                </div>
+                <div class="HoldingExhibitionEveryBox">
+                    <div>結束日期 <span>*</span></div>
+                    <input id="EndDate" type="date" name="EndDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
+                </div>
+                <div class="HoldingExhibitionCheckBox">
+                    <input type="checkbox" id="agreementCheckbox" required>
+                    <label class="AgreementChecktext">我已閱讀且同意<a href="">策展注意事項</a></label>
+                </div>
+                <div class="SubmitHoldingExhibitionFormBox">
+                    <button type="submit" class="SubmitHoldingExhibitionForm">策展申請</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@{
+    bool curationApplyDateError = TempData["CurationApplyDateError"] as bool? ?? false;
+
+    if (curationApplyDateError)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert('日期重複，策展申請失敗！請重新嘗試。');
+            });
+        </script>
+    }
+}

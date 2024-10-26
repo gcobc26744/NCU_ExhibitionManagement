@@ -1,0 +1,97 @@
+﻿@model Picasso.Models.DTOs.ExhibitionApply.ExhibitionApplyDto
+
+@{
+    ViewData["Title"] = "報名看展";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="topimg">
+    <img src="~/image/icon/NCUArtCenterBanner.png" width="100%">
+</div>
+<!--自製麵包屑書籤-->
+<div class="breadcrumbBox">
+    <div class="breadcrumbText"><a href="/Exhibition/Index">首頁</a>&nbsp&nbsp>&nbsp&nbsp<a href="/Exhibition/Overview">活動總覽</a>&nbsp&nbsp>&nbsp&nbsp<a href="/Exhibition/Detail?exhibitionId=@Model.ExhibitionId">展覽資訊</a>&nbsp&nbsp>&nbsp&nbsp<span>報名看展</span></div>
+</div>
+<!--自製麵包屑書籤 結束-->
+<div class="container">
+    <div class="ActivitySignUpContainerBox containerBox shadow">
+        <form asp-action="Apply">
+            <div class="SignUpTitle">報名看展</div>
+            <div class="ActivitySignUpInfoBox containerBox shadow">
+                <div class="ActivityInfo">
+                    <div class="ActivityTitle ActivityInfoInfo">
+                        <div class="InfoTitle">展覽名稱：</div>
+                        <input type="text" name="ExhibitionName" value="@Model.ExhibitionName" readonly>
+                    </div>
+                    <div class="ActivityPeriod ActivityInfoInfo">
+                        <div class="InfoTitle">活動期間：</div>
+                        <input type="text" name="ExhibitionDate" value="@Model.ExhibitionDate" readonly>
+                    </div>
+                    <div class="ActivityPlace ActivityInfoInfo">
+                        <div class="InfoTitle">展覽地點：</div>
+                        <input type="text" name="SpaceName" value="@Model.SpaceName" readonly>
+                    </div>
+                    <div class="ActivityTime ActivityInfoInfo">
+                        <div class="InfoTitle InfoTimeTitle">報名時間：</div>
+                        @if (!Model.ApplyStatus && !Model.IsSpaceCapacityFull)
+                        {
+                            <div class="ActivityContent ActivityTimeContent">
+                                @Html.DropDownListFor(model => model.ApplyDate, (List<SelectListItem>)ViewBag.ApplyDateList, "請選擇報名時間", new { @class = "DropDefualtWord", @required = true })
+                            </div>
+                        }
+                        else if (Model.ApplyStatus)
+                        {
+                            <div class="ActivityContent ActivityTimeContent">
+                                @Html.DropDownListFor(model => model.ApplyDate, (List<SelectListItem>)ViewBag.ApplyDateList, new { @class = "DropDefualtWord", @disabled = "disabled" })
+                            </div>
+                        }
+                        else if (Model.IsSpaceCapacityFull)
+                        {
+                            <div class="ActivityContent ActivityTimeContent">
+                                @Html.DropDownListFor(model => model.ApplyDate, (List<SelectListItem>)ViewBag.ApplyDateList, "報名人數已額滿，已無法報名！", new { @class = "DropDefualtWord", @disabled = "disabled" })
+                            </div>
+                        }
+                    </div>
+                    <div class="ActivityNumber ActivityInfoInfo">
+                        <div class="InfoTitle">報名人數：</div>
+                        <div class="ActivityContent ActivityNumberContent">
+                            <div id="seatNumber" class="SeatNumber" name="ApplyCount">@Model.ApplyCount</div>
+                            @if (!Model.IsSpaceCapacityFull)
+                            {
+                                <div id="seatStatus" class="SeatStatus">（尚有空位）</div>
+                            }
+                        </div>
+                    </div>
+                    <div class="ActivityName ActivityInfoInfo">
+                        <div class="InfoTitle">報名人：</div>
+                        <input type="text" name="MemberName" value="@Model.MemberName" readonly>
+                    </div>
+                    <div class="ActivityId ActivityInfoInfo">
+                        <div class="InfoTitle">身份：</div>
+                        <input type="text" name="MemberIdentity" value="@Model.MemberIdentity" readonly>
+                    </div>
+                </div>
+            </div>
+            @if (!(Context.Session.GetString("IsSpaceCapacityFull") == "true") && !Model.IsSpaceCapacityFull && !Model.ApplyStatus)
+            {
+                <div class="ReadCheckBox">
+                    <div class="InputGroup">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" aria-label="Checkbox for following text input" required>
+                            </div>
+                        </div>
+                        <div class="ReadCheckBoxContent">我已閱讀且同意<a href="#">展覽注意事項</a></div>
+                    </div>
+                </div>
+            
+                <div class="WantToSignUpBox GoToSignUpBox"><button type="submit" class="WantToSignUp">確認報名！</button></div>
+            }
+            <input class="hidExhibitionId" type="hidden" name="ExhibitionId" value='@Model.ExhibitionId' />
+        </form>
+        @if (Model.ApplyStatus)
+        {
+            <div class="WantToCancelSignUpBox GoToSignUpBox"><button type="submit" class="WantToCancelSignUp" onclick="location.href='@Url.Action("DeleteExhibitionApplyRecord", "Member", new { exhibitionId = Model.ExhibitionId, memberId = Model.MemberId })'">取消報名！</button></div>
+        }
+    </div>
+</div>

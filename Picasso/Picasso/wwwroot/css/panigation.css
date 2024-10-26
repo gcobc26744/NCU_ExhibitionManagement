@@ -1,0 +1,58 @@
+.pagination .page-item {
+    border: none; /* 移除按鈕的 border */
+    margin: 0 4px; /* 調整按鈕之間的間距 */
+}
+
+.pagination .page-item a{
+    width: 2.4em;
+    height: 2.4em;
+    border: none;
+    text-align: center;
+}
+
+.pagination .page-link {
+    border-radius: 50%; /* 將按鈕設為圓形 */
+    color: #000; /* 黑色字體顏色 */
+    background-color: transparent; /* 透明背景色 */
+    border: none; /* 移除按鈕的 border */
+    transition: background-color 0.3s; /* 平滑過渡效果 */
+}
+
+.pagination .page-link:hover,
+.pagination .page-link:focus {
+    background-color: #4B9FB9; /* Hover 和 Active 時的背景色 */
+    color: #fff; /* Hover 和 Active 時的字體顏色 */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #4B9FB9; /* Active 時的背景色 */
+    color: #fff; /* Active 時的字體顏色 */
+}
+
+.page-item:first-child .page-link {
+    margin-left: 0;
+    }
+
+    
+.pagination .page-item.prev,
+.pagination .page-item.next {
+    border: none;
+    margin: 0 2px;
+}
+
+.pagination .page-item.prev .page-link,
+.pagination .page-item.next .page-link {
+    border-radius: 50%;
+    color: #000;
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.pagination .page-item.prev:hover .page-link,
+.pagination .page-item.prev:focus .page-link,
+.pagination .page-item.next:hover .page-link,
+.pagination .page-item.next:focus .page-link {
+    background-color: #4B9FB9;
+    color: #fff;
+}

@@ -1,0 +1,259 @@
+﻿@model Picasso.Models.DTOs.Member.ManagementCenterDto
+
+@{
+    ViewData["Title"] = "會員中心";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="topimg">
+    <img src="~/image/icon/NCUArtCenterBanner.png" width="100%">
+</div>
+<!--自製麵包屑書籤-->
+<div class="breadcrumbBox">
+    <div class="breadcrumbText"><a href="/Exhibition/Index">首頁</a>&nbsp&nbsp>&nbsp&nbsp<span>會員中心</span></div>
+</div>
+<!--自製麵包屑書籤 結束-->
+<div class="container">
+    <div class="ActivitySignUpContainerBox containerBox shadow">
+        <div class="MemberCentreTitle">會員中心</div>
+        <div class="ModifyMemberInformationBox">
+
+            <!-- 會員資料&修改 -->
+            <div class="ModifyMemberInformationTitle">會員基本資料修改</div>
+            <div class="ModifyMemberInformationContent">
+                <form asp-action="UpdateMember">
+                    
+                    <label for="name">姓名｜</label>
+                    <input type="text" id="name" name="MemberName" maxlength="12" required value="@Model.Member.MemberName">
+                    <br>
+
+                    <label for="phone">連絡電話｜</label>
+                    <input type="tel" id="phone" name="MemberPhone" pattern="[0-9]{10}" maxlength="10" required value="@Model.Member.MemberPhone">
+                    <br>
+
+                    @if (!Model.Member.MemberEmail.Contains("@gmail.com"))
+                    {
+                        <label for="email">信箱｜</label>
+                        <input type="email" id="email" name="MemberEmail" required value="@Model.Member.MemberEmail" readonly class="Non-input">
+                        <br>
+                    }
+                    else
+                    {
+                        <label for="email">信箱｜</label>
+                        <input type="email" id="email" name="MemberEmail" pattern=".+@("@")gmail\.com" maxlength="30" oninvalid="alert('請輸入 @("@")gmail\.com 的 email');" required value="@Model.Member.MemberEmail">
+                        <br>
+                    }
+
+                    <label for="identity">帳號名稱｜</label>
+                    <input type="text" id="account" name="MemberAccount" required value="@Model.Member.MemberAccount" readonly class="Non-input">
+
+                    <br>
+
+                    <label for="identity">身分別｜</label>
+                    <input type="text" id="identity" name="MemberIdentity" required value="@Model.Member.MemberIdentity" readonly class="Non-input">
+
+                    <br>
+                    <label for="password">密碼｜</label>
+                    <input type="password" id="password" name="MemberPassword" required value="@Model.Member.MemberPassword" readonly class="Non-input">
+                    <br>
+
+                    <input class="hidMemberId" type="hidden" name="MemberId" value='@Model.Member.MemberId' />
+
+                    <button>修改會員資料</button>
+                    
+                </form>
+                <button onclick="openPopup('ChangePasswordPopup')">修改密碼</button>
+            </div>
+        </div>
+
+        <!-- 修改密碼Popup ChangePassword-->
+        <form asp-action="UpdateMemberPassword">
+            <div class="ChangePasswordPopupBox" id="ChangePasswordPopup">
+                <div class="ChangePasswordTitle">修改密碼</div>
+                <div class="ChangePasswordBox">
+                    <div class="ChangePassword1Line">
+                        <label for="oldPassword">原始密碼：</label>
+                        <input type="password" id="oldPassword" name="oldPassword" required>
+                    </div>
+                    <div class="ChangePassword1Line">
+                        <label for="newPassword">新密碼：</label>
+                        <input type="password" id="newPassword" name="newPassword" required>
+                    </div>
+                    <div class="ChangePassword1Line">
+                        <label for="confirmPassword">確認新密碼：</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                </div>
+                <div style="margin: 0 auto; width: 35%;">
+                    <button class="PWChangeConfirm" style="width: 100%;" onclick="closePopup('ChangePasswordPopup')">確認修改</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Overlay background -->
+        <div class="ChangePasswordOverlay" id="overlay" onclick="closePopup('ChangePasswordPopup')"></div>
+
+        <!-- 看展紀錄 -->
+        <div class="ExhibitionRecordBox">
+            <div class="ExhibitionRecordTitle">看展紀錄</div>
+            <div class="scrollable-table">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>展覽名稱</th>
+                            <th>展覽地點</th>
+                            <th>報名時間</th>
+                            <th>取消報名</th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model.ExhibitionApplyRecords)
+                    {
+                        <tr>
+                            <td>@item.ExhibitionName</td>
+                            <td>@item.SpaceName</td>
+                            <td>@item.ApplyDate.ToString("yyyy/MM/dd")</td>
+                            <td>
+                                @if ((item.ApplyDate >= item.StartDate) && (item.ApplyDate <= item.EndDate))
+                                {
+                                    <button class="CancelSignUP" onclick="location.href='@Url.Action("DeleteExhibitionApplyRecord", "Member", new { exhibitionId = item.ExhibitionId, memberId = item.MemberId })'">取消報名</button>
+                                }
+                                else if (item.ApplyDate > item.EndDate)
+                                {
+                                    <button class="FinishRecord" disabled>看展完成</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+
+        <!-- 辦展紀錄 -->
+        <div class="HoldingRecordBox">
+            <div class="HoldingRecordTitle">辦展紀錄</div>
+            <div class="scrollable-table">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>展覽名稱</th>
+                            <th>展覽地點</th>
+                            <th>舉辦時間</th>
+                            <th>審核狀態</th>
+                            <th>修改狀態/檢視</th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model.CurationRecords)
+                    {
+                        <tr>
+                            <td>@item.ExhibitionName</td>
+                            <td>@item.SpaceName</td>
+                            <td>@item.ExhibitionDate</td>
+
+                            @if (item.ExhibitionStatus == "待審核")
+                            {
+                                <td class="ApprovalStatus_Pending">@item.ExhibitionStatus</td>
+                                <td><button class="CancelHolding" onclick="location.href='@Url.Action("DeleteCurationRecord", "Member", new { exhibitionId = item.ExhibitionId, memberId = item.MemberId })'">取消舉辦</button></td>
+                            }
+                            else if (item.ExhibitionStatus == "失敗")
+                            {
+                                <td class="ApprovalStatus_fail">@item.ExhibitionStatus</td>
+                                <td><button class="FinishRecord" disabled>無法舉辦</button></td>
+                            }
+                            else if (item.ExhibitionStatus == "通過")
+                            {
+                                if ((item.StartDate < DateTime.Now && item.EndDate > DateTime.Now) || (item.StartDate > DateTime.Now))
+                                {
+                                    <td class="ApprovalStatus_Passing">@item.ExhibitionStatus</td>
+                                    <td><button class="FinishRecord" disabled>即將舉辦</button></td>
+                                }
+                                else
+                                {
+                                    <td class="ApprovalStatus_Passing">@item.ExhibitionStatus</td>
+                                    <td><button class="FinishRecord" disabled>舉辦完成</button></td>
+                                }
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    bool deleteExhibitionApplySuccess = TempData["DeleteExhibitionApplySuccess"] as bool? ?? false;
+    bool deleteCurationRecordSuccess = TempData["DeleteCurationRecordSuccess"] as bool? ?? false;
+    bool curationApplySuccess = TempData["CurationApplySuccess"] as bool? ?? false;
+    bool exhibitionApplySuccess = TempData["ExhibitionApplySuccess"] as bool? ?? false;
+    bool updateMemberSuccess = TempData["UpdateMemberSuccess"] as bool? ?? false;
+    bool updateMemberPasswordSuccess = TempData["UpdateMemberPasswordSuccess"] as bool? ?? false;
+    bool updateMemberPasswordError = TempData["UpdateMemberPasswordError"] as bool? ?? false;
+    
+    
+    if (deleteExhibitionApplySuccess)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert('報名看展刪除完成！');
+            });
+        </script>
+    }
+
+    if (deleteCurationRecordSuccess)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert('策展紀錄刪除完成！');
+            });
+        </script>
+    }
+
+    if (curationApplySuccess)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert('策展申請完成！');
+            });
+        </script>
+    }
+
+    if (exhibitionApplySuccess)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert('報名看展申請完成！');
+            });
+        </script>
+    }
+
+    if (updateMemberSuccess)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert('會員修改完成！');
+            });
+        </script>
+    }
+
+    if (updateMemberPasswordSuccess)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert('修改密碼成功！');
+            });
+        </script>
+    }
+
+    if (updateMemberPasswordError)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert('修改密碼失敗！請重新嘗試。');
+            });
+        </script>
+    }
+}
+
+<script src="~/js/Member/ManagementCenter.js"></script>

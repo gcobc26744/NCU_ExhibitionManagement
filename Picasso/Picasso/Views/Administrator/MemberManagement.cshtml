@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Picasso.Model.Members>
+
+@{
+    ViewData["Title"] = "會員管理";
+    Layout = "~/Views/Shared/_AdministratorLayout.cshtml";
+}
+
+<div class="container">
+    <div class="d-flex inline-flex align-items-center mt-5 mb-3">
+        <h1 class="font-weight-normal text-info">會員管理</h1>
+    </div>
+    <div class="d-flex justify-content-center my-2"></div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>連絡電話</th>
+                <th>電子郵件</th>
+                <th>身分</th>
+                <th>刪除會員</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="align-middle">@item.MemberName</td>
+                    <td class="align-middle">@item.MemberPhone</td>
+                    <td class="align-middle">@item.MemberEmail</td>
+                    <td class="align-middle">@item.MemberIdentity</td>
+                    <td id="buttonTd" class="align-middle py-1">
+                        <!-- 表格刪除會員的按鈕 -->
+                        @if (item.MemberIdentity == "校外人士")
+                        {
+                            <button type="button" class="deleteBtn btn btn-primary px-3mary" style="background-color:rgba(9, 138, 155); color:white; border-color: rgba(9, 138, 155);" data-toggle="modal" data-target="#DeleteMemberModal">刪除</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="deleteBtn btn btn-primary px-3mary" style="background-color:rgba(9, 138, 155); color:white; border-color: rgba(9, 138, 155);" data-toggle="modal" data-target="#DeleteMemberModal" disabled>刪除</button>
+                        }
+                        <input id="memberId" type="hidden" value='@item.MemberId' />
+                        <input id="memberIdentity" type="hidden" value='@item.MemberIdentity' />
+                    </td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- 刪除會員的彈跳視窗 -->
+<div class="modal fade" id="mi-modal" tabindex="-1" aria-labelledby="mySmallModalLabel" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mySmallModalLabel">刪除會員</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                確認刪除此會員？
+            </div>
+            <div class="modal-footer">
+                <button id="modal-btn-no" type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button id="modal-btn-delete" type="button" class="btn btn-outline-info px-3mary">刪除會員</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Administrator/MemberManagement.js"></script>

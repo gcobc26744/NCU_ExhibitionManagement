@@ -1,0 +1,36 @@
+﻿@model Picasso.Models.DTOs.Exhibition.ExhibitionDto
+
+@{
+    ViewData["Title"] = "展覽詳細資訊";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="topimg">
+    <img src="~/image/icon/NCUArtCenterBanner.png" width="100%">
+</div>
+<!--自製麵包屑書籤-->
+<div class="breadcrumbBox">
+    <div class="breadcrumbText"><a href="/Exhibition/Index">首頁</a>&nbsp&nbsp>&nbsp&nbsp<a href="/Exhibition/Overview">活動總覽</a>&nbsp&nbsp>&nbsp&nbsp<span>展覽資訊</span></div>
+</div>
+<!--自製麵包屑書籤 結束-->
+<div class="container">
+    <div class="containerBox shadow">
+        <div id="exhibitionName" class="ExhibitionInfoTitle">@Model.ExhibitionName</div>
+        <div class="ExhibitionInfoPicture"><img id="exhibitionImage" src="@("../image/upload/" + Model.Image)"></div>
+        <div class="ExhibitionInfoAppendix">
+            <div><b>策展｜</b><span id="memberName">@Model.MemberName</span></div>
+            <div><b>展期｜</b><span id="exhibitionDate">@Model.ExhibitionDate</span></div>
+            <div><b>地點｜</b><span id="spaceName">@Model.SpaceName</span></div>
+            <div><b>主辦｜</b><span id="organizer">@Model.Organizer</span></div>
+            <div><b>協辦｜</b><span id="coOrganizer">@Model.CoOrganizer</span></div>
+        </div>
+        <div class="ExhibitionInfoDescription">
+            <div class="ExhibitionInfoDescriptionTitle">展覽介紹：</div>
+            <div id="exhibitionDescription" class="ExhibitionInfoDescriptionText">@Model.ExhibitionDescription</div>
+        </div>
+        @if (Context.Session.GetString("IsLogin") == "true" && !Model.IsPastExhibition)
+        {
+            <div class="WantToSignUpBox"><button id="signUpBtn" class="WantToSignUp" onclick="location.href='@Url.Action("Apply", "ExhibitionApply", new { exhibitionId = Model.ExhibitionId })'">我要報名</button></div>
+        }
+    </div>
+</div>

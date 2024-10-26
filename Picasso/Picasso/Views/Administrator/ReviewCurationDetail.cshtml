@@ -1,0 +1,72 @@
+﻿@model Picasso.Models.DTOs.Administrator.ReviewCurationDetailDto
+
+@{
+    ViewData["Title"] = "審核策展";
+    Layout = "~/Views/Shared/_AdministratorLayout.cshtml";
+}
+
+<div class="container">
+    <div class="containerBox shadow">
+        <div class="AdminCorrectExhibitionContent">
+            <div class="AdminCorrectExhibitionTitle">審核策展</div>
+            <div class="AdminCorrectExhibitionCreator">
+                <div>策展人</div>
+                <input type="text" value="@Model.MemberName" readonly>
+            </div>
+            <div class="AdminCorrectExhibitionPhone">
+                <div>聯絡電話</div>
+                <input type="text" value="@Model.MemberPhone" readonly>
+            </div>
+            <div class="AdminCorrectExhibitionEmail">
+                <div>電子信箱</div>
+                <input type="text" value="@Model.MemberEmail" readonly>
+            </div>
+            <div class="AdminCorrectExhibitionName">
+                <div>展覽名稱</div>
+                <input type="text" value="@Model.ExhibitionName" readonly>
+            </div>
+            <div class="AdminCorrectExhibitionRentPlace">
+                <div>租借場地</div>
+                <input type="text" value="@Model.SpaceName" readonly>
+            </div>
+            <div class="AdminCorrectExhibitionType">
+                <div>展覽類型</div>
+                <input type="text" value="@Model.ExhibitionType" readonly>
+            </div>
+            <div class="AdminCorrectExhibitionInfo">
+                <div>展覽資訊</div>
+                <div class="AdminCorrectExhibitionInfoContent">@Model.ExhibitionDescription</div>
+            <div class="AdminCorrectExhibitionPost">
+                <div>活動海報</div>
+                <img src="@Url.Content("../image/upload/" + Model.Image)">
+            </div>
+            <div class="AdminCorrectExhibitionLaunch">
+                <div>主辦單位</div>
+                <input type="text" value="@Model.Organizer" readonly>
+            </div>
+            <div class="AdminCorrectExhibitionSubLanch">
+                <div>協辦單位</div>
+                <input type="text" value="@Model.CoOrganizer" readonly>
+            </div>
+            <div class="AdminCorrectExhibitionStart">
+                <div>開始日期</div>
+                <input type="text" value="@Model.StartDate" readonly>
+            </div>
+            <div class="AdminCorrectExhibitionEnd">
+                <div>結束日期</div>
+                <input type="text" value="@Model.EndDate" readonly>
+            </div>
+            <div id="exhibitionStatusSelectOption " class="HoldingExhibitionEveryBox dropdown" style="margin :0 auto; width: 12%">
+                @Html.DropDownListFor(model => model.ExhibitionStatus, (List<SelectListItem>)ViewBag.ExhibitionStatus, new { @class = "RentPlaceSelect" })
+            </div>
+            <input id="exhibitionId" class="hidExhibitionId" type="hidden" name="ExhibitionId" value='@Model.ExhibitionId' />
+            <div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a type="button" class="btn btn-outline-secondary" href="/Administrator/ReviewCuration">返回策展管理</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<script src="~/js/Administrator/ReviewCurationDetail.js"></script>
